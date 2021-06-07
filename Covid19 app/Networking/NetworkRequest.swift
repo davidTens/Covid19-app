@@ -23,7 +23,8 @@ final class NetworkRequest {
             return completion(.failure(.apiError))
         }
         
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+        let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+            guard let self = self else { return }
             
             if let _ = error {
                 completion(.failure(.invalidResponse))
