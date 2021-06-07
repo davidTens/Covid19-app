@@ -31,8 +31,8 @@ final class MainViewController: UICollectionViewController, UICollectionViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        customRefresherUI()
         refresh()
-        refreshAlternative()
         navigationItem.title = "Countries"
         collectionView.alwaysBounceVertical = true
         collectionView.contentInsetAdjustmentBehavior = .always
