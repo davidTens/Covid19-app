@@ -1,5 +1,5 @@
 # Covid19-app
-Covid19 app with some cool design patterns applied
+Covid19 app with cool design patterns applied ;))
 
 Built using Swift 5. No third party libraries were used.
 
