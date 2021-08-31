@@ -11,7 +11,7 @@ final class RootVC: UINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let mainVC = MainViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        let mainVC = MainViewController()
         viewControllers = [mainVC]
     }
 }

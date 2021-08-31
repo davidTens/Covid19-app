@@ -7,15 +7,28 @@
 
 import UIKit
 
-final class MainViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+final class MainViewController: UIViewController, UICollectionViewDelegateFlowLayout {
     
     private let cellId = "cellId"
-    private let dynamicBackgroundColors = UIColor.white | #colorLiteral(red: 0.09410706908, green: 0.09355535358, blue: 0.09453616291, alpha: 1)
-    private let dynamicSubColors = UIColor.black | UIColor.white
     private var customRefreshControl = UIRefreshControl()
     
     private lazy var countryList = [CountryViewModel]()
     private var countryService: CountryService?
+    
+    private lazy var collectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        flowLayout.scrollDirection = .vertical
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.contentInsetAdjustmentBehavior = .always
+        collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.backgroundColor = Colors.backgroundColors
+        collectionView.showsHorizontalScrollIndicator = false
+        return collectionView
+    }()
     
     private lazy var errorMessage: UIButton = {
         let errorMessage = UIButton()
@@ -31,15 +44,11 @@ final class MainViewController: UICollectionViewController, UICollectionViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionViewSetUp()
+        navigationItem.title = "Countries"
+        navigationController?.navigationBar.tintColor = Colors.tintColros
         customRefresherUI()
         refresh()
-        navigationItem.title = "Countries"
-        collectionView.alwaysBounceVertical = true
-        collectionView.contentInsetAdjustmentBehavior = .always
-        collectionView.backgroundColor = dynamicBackgroundColors
-        collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: cellId)
-        collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        navigationController?.navigationBar.tintColor = dynamicSubColors
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -48,8 +57,13 @@ final class MainViewController: UICollectionViewController, UICollectionViewDele
         customRefreshControl.removeFromSuperview()
     }
     
+    private func collectionViewSetUp() {
+        view.addSubview(collectionView)
+        collectionView.fillSuperview()
+    }
+    
     private func customRefresherUI() {
-        customRefreshControl.tintColor = dynamicSubColors
+        customRefreshControl.tintColor = Colors.tintColros
         collectionView.addSubview(customRefreshControl)
         customRefreshControl.xyAnchors(x: view.centerXAnchor, y: view.centerYAnchor)
     }
@@ -136,17 +150,17 @@ extension UIViewController {
     }
 }
 
-extension MainViewController {
+extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return countryList.count
     }
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! CollectionViewCell
         let country = countryList[indexPath.row]
         cell.configure(country)
@@ -157,7 +171,7 @@ extension MainViewController {
         return CGSize(width: (view.frame.width / 2) - 15, height: 145)
     }
     
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let country = countryList[indexPath.row]
         country.select()
     }

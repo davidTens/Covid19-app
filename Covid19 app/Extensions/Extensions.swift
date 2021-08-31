@@ -73,7 +73,7 @@ extension UIView {
     }
     
     func fillSuperview(padding: UIEdgeInsets = .zero) {
-        layout(top: superview?.safeAreaLayoutGuide.topAnchor, leading: superview?.safeAreaLayoutGuide.leadingAnchor, bottom: superview?.safeAreaLayoutGuide.bottomAnchor, trailing: superview?.safeAreaLayoutGuide.trailingAnchor, padding: padding)
+        layout(top: superview?.topAnchor, leading: superview?.leadingAnchor, bottom: superview?.bottomAnchor, trailing: superview?.trailingAnchor, padding: padding)
     }
 }
 

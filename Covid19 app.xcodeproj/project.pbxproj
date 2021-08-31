@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B18805826DE97DE00C97C76 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B18805726DE97DE00C97C76 /* Colors.swift */; };
 		7522350226665DD80043984F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7522350126665DD80043984F /* AppDelegate.swift */; };
 		7522350626665DD80043984F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7522350526665DD80043984F /* MainViewController.swift */; };
 		7522350B26665DDA0043984F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7522350A26665DDA0043984F /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B18805726DE97DE00C97C76 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		752234FE26665DD80043984F /* Covid19 app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Covid19 app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7522350126665DD80043984F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7522350526665DD80043984F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +63,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B18805626DE97CB00C97C76 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				0B18805726DE97DE00C97C76 /* Colors.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		752234F526665DD80043984F = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +90,7 @@
 		7522350026665DD80043984F /* Covid19 app */ = {
 			isa = PBXGroup;
 			children = (
+				0B18805626DE97CB00C97C76 /* Constants */,
 				75223521266755560043984F /* ViewModel */,
 				75223516266660580043984F /* Model */,
 				7593F41E2669018F003FA872 /* Core Data */,
@@ -239,6 +250,7 @@
 				7593F426266901F7003FA872 /* Countries+CoreDataProperties.swift in Sources */,
 				754B256126696EF300A4A0FE /* CountriesCache.swift in Sources */,
 				7593F425266901F7003FA872 /* Countries+CoreDataClass.swift in Sources */,
+				0B18805826DE97DE00C97C76 /* Colors.swift in Sources */,
 				7522351E266663AD0043984F /* Extensions.swift in Sources */,
 				75E9C8DD266DF497002D9DB8 /* RootVC.swift in Sources */,
 				754B25632669717600A4A0FE /* CacheAdapter.swift in Sources */,
